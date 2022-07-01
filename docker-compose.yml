@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  bot:
+    container_name: minecat
+    env_file: .env
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./logs:/bot/logs
+      - ./minecat:/bot/minecat
