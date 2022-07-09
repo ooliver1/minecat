@@ -1,13 +1,47 @@
 version: "3"
 
 services:
-  bot:
-    container_name: minecat
+  bot1:
+    container_name: minecat1
     env_file: .env
-    restart: unless-stopped
-    build:
-      context: .
-      dockerfile: Dockerfile
+    restart: always
+    build: .
     volumes:
       - ./logs:/bot/logs
       - ./minecat:/bot/minecat
+    environment:
+      DB_URI: postgresql://postgres:postgres@postgres:5432/bot
+      SHARD_ID: 0
+      SHARD_COUNT: 2
+      SHARD_TOTAL: 4
+    links:
+      - postgres
+    depends_on:
+      - postgres
+  bot2:
+    container_name: minecat2
+    env_file: .env
+    restart: always
+    build: .
+    volumes:
+      - ./logs:/bot/logs
+      - ./minecat:/bot/minecat
+    environment:
+      DB_URI: postgresql://postgres:postgres@postgres:5432/bot
+      SHARD_ID: 2
+      SHARD_COUNT: 2
+      SHARD_TOTAL: 4
+    links:
+      - postgres
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: bot
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data

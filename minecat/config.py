@@ -1,8 +1,8 @@
+from os import getenv
 from botbase import Emojis
 
 
-db_name = "ooliver"
-# db_host = "localhost"  # default
+db_url = getenv("DB_URI")
 version = "0.0.0"
 prefix = ["!"]  # FIXME: actual prefix
 # help_msg = """
