@@ -11,7 +11,7 @@ from typing import TYPE_CHECKING
 from botbase import BotBase
 from dotenv import load_dotenv
 from mineager import run
-from nextcord import Intents
+from nextcord import Intents, MemberCacheFlags
 from uvloop import EventLoopPolicy
 
 if TYPE_CHECKING:
@@ -34,7 +34,8 @@ intents = Intents.none()
 intents.guilds = True
 intents.guild_messages = True
 intents.message_content = True
-bot = MyBot(intents=intents)
+intents.members = True
+bot = MyBot(intents=intents, member_cache_flags=MemberCacheFlags.none())
 
 
 bot.run(getenv("TOKEN"))
