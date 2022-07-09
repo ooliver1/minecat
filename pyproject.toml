@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "minecat"
-version = "0.0.0"
+version = "0.1.0"
 description = "A Discord bot to connect with Minecraft!"
 authors = ["ooliver1 <oliverwilkes2006@icloud.com>"]
 license = "ELv2"
