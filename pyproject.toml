@@ -3,7 +3,7 @@ name = "minecat"
 version = "0.0.0"
 description = "A Discord bot to connect with Minecraft!"
 authors = ["ooliver1 <oliverwilkes2006@icloud.com>"]
-license = "MIT"
+license = "ELv2"
 
 [tool.poetry.dependencies]
 python = "^3.10"
