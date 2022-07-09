@@ -18,7 +18,8 @@ class MyBot(BotBase):
 
 intents = Intents.none()
 intents.guilds = True
-intents.messages = True
+intents.guild_messages = True
+intents.message_content = True
 bot = MyBot(intents=intents)
 
 

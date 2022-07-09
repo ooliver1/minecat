@@ -254,6 +254,24 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "mineager"
+version = "0.1.0"
+description = "The shard and websocket manager for the Discord bot Minecat."
+category = "main"
+optional = false
+python-versions = "^3.10"
+develop = false
+
+[package.dependencies]
+websockets = "^10.3"
+
+[package.source]
+type = "git"
+url = "https://github.com/ooliver1/mineager"
+reference = "master"
+resolved_reference = "ee7f9eb459c99c6a12e98bba07904dab0ec6dd7d"
+
+[[package]]
 name = "multidict"
 version = "6.0.2"
 description = "multidict implementation"
@@ -461,7 +479,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "a1e4417d7136ffea07acd18cbc98d785d920e7e5a41a6a37310b89cb9dd6b1f0"
+content-hash = "d8464348c221e32829e46e96c21ffab009315f48712e4201ba2431cef45adeb2"
 
 [metadata.files]
 aiodns = [
@@ -875,6 +893,7 @@ jishaku = [
 lru-dict = [
     {file = "lru-dict-1.1.7.tar.gz", hash = "sha256:45b81f67d75341d4433abade799a47e9c42a9e22a118531dcb5e549864032d7c"},
 ]
+mineager = []
 multidict = [
     {file = "multidict-6.0.2-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:0b9e95a740109c6047602f4db4da9949e6c5945cefbad34a1299775ddc9a62e2"},
     {file = "multidict-6.0.2-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:ac0e27844758d7177989ce406acc6a83c16ed4524ebc363c1f748cba184d89d3"},

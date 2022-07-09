@@ -20,6 +20,7 @@ nextcord-ext-ipc = "^2.2.1"
 nextcord-ext-menus = "^1.5.4"
 asyncpg = "^0.25.0"
 shortuuid = "^1.0.9"
+mineager = {git = "https://github.com/ooliver1/mineager"}
 
 [tool.poetry.dev-dependencies]
 black = "^22.6.0"
