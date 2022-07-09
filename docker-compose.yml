@@ -1,8 +1,8 @@
 version: "3"
 
 services:
-  bot:
-    container_name: minecat
+  bot1:
+    container_name: minecat1
     env_file: .env
     restart: always
     build: .
@@ -11,14 +11,29 @@ services:
       - ./minecat:/bot/minecat
     environment:
       DB_URI: postgresql://postgres:postgres@postgres:5432/bot
-    links:
-      - postgres
-      - manager
-    depends_on:
-      - postgres
-      - manager
+      SHARD_START: 0
+      SHARD_COUNT: 3
+      SHARD_TOTAL: 6
+    links: [ "postgres", "manager" ]
+    depends_on: [ "postgres", "manager" ]
     ports:
       - "6900:6900"
+  bot2:
+    container_name: minecat2
+    env_file: .env
+    restart: always
+    build: .
+    volumes:
+      - ./logs:/bot/logs
+      - ./minecat:/bot/minecat
+    environment:
+      DB_URI: postgresql://postgres:postgres@postgres:5432/bot
+      SHARD_START: 3
+      SHARD_COUNT: 3
+      SHARD_TOTAL: 6
+    links: [ "postgres", "manager" ]
+    depends_on: [ "postgres", "manager" ]
+    ports:
       - "6901:6901"
   manager:
     container_name: manager
