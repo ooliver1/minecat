@@ -4,13 +4,13 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
 from asyncio import set_event_loop_policy
 from os import getenv
+from typing import TYPE_CHECKING
 
-from mineager import run
 from botbase import BotBase
 from dotenv import load_dotenv
+from mineager import run
 from nextcord import Intents
 from uvloop import EventLoopPolicy
 
