@@ -21,13 +21,7 @@ shard_count = int(env["SHARD_COUNT"])
 shard_ids = list(range(shard_start, shard_start + shard_count))
 
 
-class MyBot(BotBase):
-    # mcws: WebSocketServer
-
-    # async def startup(self, *args, **kwargs):
-    #     self.mcws = await run()
-
-    #     await super().startup(*args, **kwargs)
+class Minecat(BotBase):
     ...
 
 
@@ -36,7 +30,7 @@ intents.guilds = True
 intents.guild_messages = True
 intents.message_content = True
 intents.members = True
-bot = MyBot(
+bot = Minecat(
     intents=intents,
     member_cache_flags=MemberCacheFlags.none(),
     shard_ids=shard_ids,
