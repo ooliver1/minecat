@@ -1,13 +1,18 @@
-from asyncio import new_event_loop
+from asyncio import get_event_loop
+from asyncio import run as async_run
+from signal import SIGTERM
 
 from mineager import run
 
 
-loop = new_event_loop()
-loop.create_task(run())
+async def main():
+    loop = get_event_loop()
+
+    stop = loop.create_future()
+    loop.add_signal_handler(SIGTERM, stop.set_result, None)
+
+    async with run():
+        await stop
 
 
-try:
-    loop.run_forever()
-finally:
-    loop.close()
+async_run(main())
