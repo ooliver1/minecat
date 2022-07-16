@@ -5,13 +5,15 @@
 from __future__ import annotations
 
 from asyncio import set_event_loop_policy
-from os import getenv, environ as env
+from os import environ as env
+from os import getenv
 
 from botbase import BotBase
 from dotenv import load_dotenv
 from nextcord import Intents, MemberCacheFlags
 from uvloop import EventLoopPolicy
 
+from .cogs.websocket import Manager
 
 set_event_loop_policy(EventLoopPolicy())
 load_dotenv()
@@ -22,7 +24,7 @@ shard_ids = list(range(shard_start, shard_start + shard_count))
 
 
 class Minecat(BotBase):
-    ...
+    manager: Manager
 
 
 intents = Intents.none()
