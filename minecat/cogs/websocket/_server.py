@@ -17,6 +17,8 @@ if TYPE_CHECKING:
 
 
 class WebSocketServer(WebSocketServerProtocol):
+    uuid: str
+
     async def send_error(self, error: ServerError) -> None:
         self.logger.error("Error occured! %s: %s", error, error.__doc__)
         payload: JsonType = {}
