@@ -4,7 +4,6 @@
 
 from __future__ import annotations
 
-from logging import getLogger
 from typing import TYPE_CHECKING
 
 from ._errors import ServerError
@@ -17,8 +16,6 @@ if TYPE_CHECKING:
     from ._types import JsonType, WebSocketCallback
 
 __all__ = ("Manager",)
-
-log = getLogger(__name__)
 
 
 class Manager:
@@ -42,7 +39,7 @@ class Manager:
         callback = self.callbacks.get(opcode)
 
         if callback is None:
-            return log.error("No callback for opcode %s", opcode)
+            return ws.logger.error("No callback for opcode %s", opcode)
 
         ws.logger.debug("Found callback for opcode %s", opcode)
         await callback(ws, data)
