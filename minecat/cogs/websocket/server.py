@@ -74,3 +74,7 @@ class Server(CogBase["Minecat"]):
         ws.logger.debug("< Received new connection")
         async for message in ws:
             await self.bot.manager(ws=ws, data=loads(message))
+
+
+def setup(bot: Minecat):
+    bot.add_cog(Server(bot))
