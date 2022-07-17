@@ -319,7 +319,7 @@ docs = ["sphinx", "sphinxcontrib-trio", "sphinx-book-theme"]
 
 [[package]]
 name = "ooliver-botbase"
-version = "1.20.0"
+version = "1.20.1"
 description = "A personal nextcord bot base package for bots."
 category = "main"
 optional = false
@@ -464,7 +464,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "bba605dc02f80bd83dd6734463235c700e882a06086be603488839d9bb3785df"
+content-hash = "9a1b45941637f8066beea3e58699823431e32cb8e25c0ce9444006466363628d"
 
 [metadata.files]
 aiodns = []
