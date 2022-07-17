@@ -17,11 +17,6 @@ if TYPE_CHECKING:
 
 
 class WebsocketManager(CogBase["Minecat"]):
-    def __init__(self, bot: Minecat):
-        super().__init__(bot)
-
-        self.bot.manager = Manager(bot)
-
     @command()
     @is_owner()
     async def reload_manager(self, ctx: MyContext):
@@ -38,3 +33,4 @@ class WebsocketManager(CogBase["Minecat"]):
 
 def setup(bot: Minecat):
     bot.add_cog(WebsocketManager(bot))
+    bot.manager = Manager(bot)
