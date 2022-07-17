@@ -24,17 +24,22 @@ log = getLogger(__name__)
 class Manager:
     def __init__(self, bot: Minecat) -> None:
         self.bot = bot
-        self.callbacks: dict[Opcode, WebSocketCallback]
+        self.callbacks: dict[Opcode, WebSocketCallback] = {}
 
     async def __call__(self, *, ws: WebSocketServer, data: JsonType) -> None:
         ws.logger.debug("Handling and finding opcode")
 
-        if "opcode" not in data:
-            await ws.send_error(ServerError.MISSING_OPCODE)
-        if (opcode := data["o"]) not in Opcode:
-            await ws.send_error(ServerError.UNKNOWN_OPCODE)
+        if "o" not in data:
+            return await ws.send_error(ServerError.MISSING_OPCODE)
 
-        callback = self.callbacks.get(Opcode(data["opcode"]))
+        raw_opcode = data["o"]
+
+        try:
+            opcode = Opcode(raw_opcode)
+        except ValueError:
+            return await ws.send_error(ServerError.UNKNOWN_OPCODE)
+
+        callback = self.callbacks.get(opcode)
 
         if callback is None:
             return log.error("No callback for opcode %s", opcode)
