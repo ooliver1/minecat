@@ -23,6 +23,7 @@ class WebsocketManager(CogBase["Minecat"]):
         from .. import websocket
 
         await ctx.send("Reloading module...")
+        reload(websocket._manager)
         reload(websocket)
         await ctx.send("Reloaded module.")
 
