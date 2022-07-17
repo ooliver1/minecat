@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.2.0](https://github.com/ooliver1/minecat/compare/v0.1.0...v0.2.0) (2022-07-17)
+
+
+### Features
+
+* actually add the ability to add callbacks ([731c1f4](https://github.com/ooliver1/minecat/commit/731c1f452c450108990ae1a1b51c5b6a28b9e6b2))
+* add a manager class for callback sorting ([7d4986d](https://github.com/ooliver1/minecat/commit/7d4986d29fb83b8b047e4ef382af92b17ad2c94e))
+* use a graceful shutdown on the manager ([99f4426](https://github.com/ooliver1/minecat/commit/99f44260a3ad32d5927bac788e5472e416e672ed))
+
+
+### Bug Fixes
+
+* actually rename bot ([c7575df](https://github.com/ooliver1/minecat/commit/c7575df06da18fd7e0dc253478c82a68664484e1))
+* use an __init__ file for version to update ([7a4753a](https://github.com/ooliver1/minecat/commit/7a4753ad5e320679802b9546b8128be508739c58))
+
 ## 0.1.0 (2022-07-09)
 
 
