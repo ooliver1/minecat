@@ -3,8 +3,10 @@
 # https://www.elastic.co/licensing/elastic-license
 
 from typing import Awaitable, Callable
+
 from websockets.server import WebSocketServerProtocol
 
+__all__ = ("JsonType", "WebSocketCallback")
 
 json_types = str | int | float | bool | None
 InternalType = json_types | list["InternalType"] | dict[str, "InternalType"]

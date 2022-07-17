@@ -5,6 +5,8 @@
 from enum import IntEnum
 
 __all__ = ("Opcode",)
+
+
 class Opcode(IntEnum):
     LOGIN = 0
     MESSAGE = 1

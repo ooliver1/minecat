@@ -5,7 +5,6 @@
 from __future__ import annotations
 
 from logging import getLogger
-
 from typing import TYPE_CHECKING
 
 from ._errors import ServerError
@@ -13,9 +12,11 @@ from ._opcode import Opcode
 
 if TYPE_CHECKING:
     from minecat.__main__ import Minecat
-    from ._types import WebSocketCallback, JsonType
     from ._server import WebSocketServer
 
+    from ._types import JsonType, WebSocketCallback
+
+__all__ = ("Manager",)
 
 log = getLogger(__name__)
 
@@ -26,6 +27,8 @@ class Manager:
         self.callbacks: dict[Opcode, WebSocketCallback]
 
     async def __call__(self, *, ws: WebSocketServer, data: JsonType) -> None:
+        ws.logger.debug("Handling and finding opcode")
+
         if "opcode" not in data:
             await ws.send_error(ServerError.MISSING_OPCODE)
         if (opcode := data["o"]) not in Opcode:
@@ -36,4 +39,5 @@ class Manager:
         if callback is None:
             return log.error("No callback for opcode %s", opcode)
 
+        ws.logger.debug("Found callback for opcode %s", opcode)
         await callback(ws, data)
