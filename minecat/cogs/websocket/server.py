@@ -32,7 +32,7 @@ class UUIDAdapter(LoggerAdapter):
         return f"{uuid} {xff}: {msg}", kwargs
 
 
-raw_logger = getLogger("mineager.websocket")
+raw_logger = getLogger("minecat.cogs.websocket")
 raw_logger.setLevel(INFO)
 h = TimedRotatingFileHandler("./logs/ws/io.log", when="midnight")
 h.setFormatter(
