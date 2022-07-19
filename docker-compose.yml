@@ -38,7 +38,7 @@ services:
   manager:
     container_name: manager
     restart: always
-    build: ./manager
+    build: ./mineager
     volumes:
       - ./logs:/manager/logs
     ports:
