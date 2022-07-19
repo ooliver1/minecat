@@ -38,7 +38,9 @@ services:
   manager:
     container_name: manager
     restart: always
-    build: ./mineager
+    build:
+      context: .
+      dockerfile: manager.Dockerfile
     volumes:
       - ./logs:/manager/logs
     ports:

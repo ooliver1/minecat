@@ -1,5 +1,5 @@
 *
-!manager/*
+!mineager/*
 !minecat/*
 !pyproject.toml
 !poetry.lock
