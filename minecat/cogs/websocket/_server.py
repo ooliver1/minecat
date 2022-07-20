@@ -6,17 +6,16 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from orjson import dumps
-from websockets.server import WebSocketServerProtocol
+from common.protocols import JsonWebSocketServer
 
 from ._opcode import Opcode
 
 if TYPE_CHECKING:
     from ._errors import ServerError
-    from ._types import JsonType
+    from common.types import JsonType
 
 
-class WebSocketServer(WebSocketServerProtocol):
+class WebSocketServer(JsonWebSocketServer):
     uuid: str
 
     async def send_error(self, error: ServerError) -> None:
@@ -31,4 +30,4 @@ class WebSocketServer(WebSocketServerProtocol):
         payload["o"] = Opcode.ERROR.value
         payload["d"] = data
 
-        await self.send(dumps(payload).decode())
+        await self.send_json(payload)

@@ -13,7 +13,7 @@ if TYPE_CHECKING:
     from minecat.__main__ import Minecat
     from ._server import WebSocketServer
 
-    from ._types import JsonType, WebSocketCallback
+    from common.types import JsonType, WebSocketCallback
 
 __all__ = ("Manager",)
 
