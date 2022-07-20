@@ -4,3 +4,4 @@
 
 from .run import *
 from .websocket import *
+from .manager import *

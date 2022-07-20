@@ -2,6 +2,12 @@
 # you may not use this file except in compliance with, the Elastic License 2.0
 # https://www.elastic.co/licensing/elastic-license
 
-from .logger import *
-from .server import *
-from .opcode import *
+from enum import IntEnum
+
+__all__ = ("Opcode",)
+
+
+class Opcode(IntEnum):
+    LOGIN = 0
+    LINKED = 1
+    RESTART = 2
