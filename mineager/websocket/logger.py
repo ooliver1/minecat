@@ -4,6 +4,7 @@
 
 from logging import Formatter, LoggerAdapter, getLogger, INFO
 from logging.handlers import TimedRotatingFileHandler
+from common import ws_logger_factory
 
 __all__ = ("default_logger",)
 
@@ -20,15 +21,5 @@ class UUIDAdapter(LoggerAdapter):
         return f"{uuid} {xff}: {msg}", kwargs
 
 
-raw_default_logger = getLogger("mineager.websocket")
-raw_default_logger.setLevel(INFO)
-h = TimedRotatingFileHandler("./logs/mg/io.log", when="midnight")
-h.setFormatter(
-    Formatter(
-        "%(levelname)-7s %(asctime)s %(filename)12s:%(funcName)-28s: %(message)s",
-        datefmt="%H:%M:%S %d/%m/%Y",
-    )
-)
-h.namer = lambda name: name.replace(".log", "") + ".log"
-raw_default_logger.addHandler(h)
+raw_default_logger = ws_logger_factory(logger_name="mineager.websocket", directory="mg")
 default_logger = UUIDAdapter(raw_default_logger)

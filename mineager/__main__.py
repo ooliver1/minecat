@@ -15,7 +15,9 @@ async def main():
     stop = loop.create_future()
     loop.add_signal_handler(SIGTERM, stop.set_result, None)
 
-    async with run():
+    ws_server, manager_server = run()
+
+    async with ws_server, manager_server:
         await stop
 
 

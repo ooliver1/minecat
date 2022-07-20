@@ -7,7 +7,9 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from .websocket import run_ws
-from .websocket import default_logger
+from .websocket import default_logger as ws_default_logger
+from .manager import run_manager
+from .manager import default_logger as manager_default_logger
 
 if TYPE_CHECKING:
     from ssl import SSLContext
@@ -22,8 +24,13 @@ __all__ = ("run",)
 def run(
     *,
     host: str = "0.0.0.0",
-    port: int = 6899,
+    ws_port: int = 6899,
+    manager_port: int = 620,
     ssl: SSLContext | None = None,
-    logger: LoggerLike | None = default_logger,
-) -> Serve:
-    return run_ws(host=host, port=port, ssl=ssl, logger=logger)
+    ws_logger: LoggerLike | None = ws_default_logger,
+    manager_logger: LoggerLike | None = manager_default_logger,
+) -> tuple[Serve, Serve]:
+    return (
+        run_ws(host=host, port=ws_port, ssl=ssl, logger=ws_logger),
+        run_manager(host=host, port=manager_port, ssl=ssl, logger=manager_logger),
+    )

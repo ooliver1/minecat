@@ -27,7 +27,7 @@ class Connect(CogBase["Minecat"]):
         bot.loop.create_task(self.connect())
 
     async def connect(self) -> None:
-        async for ws in connect("ws://127.0.0.1:6899"):
+        async for ws in connect("ws://manager:6420"):
             try:
                 async for message in ws:
                     await self.handler(ws, loads(message))
