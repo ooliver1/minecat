@@ -1,6 +1,7 @@
 *
 !mineager/*
 !minecat/*
+!common/*
 !pyproject.toml
 !poetry.lock
 !start.sh

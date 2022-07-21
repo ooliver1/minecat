@@ -44,7 +44,7 @@ services:
     volumes:
       - ./logs:/manager/logs
     expose:
-      - "6420:6420"
+      - "6420"
     ports:
       - "6899:6899"
   postgres:

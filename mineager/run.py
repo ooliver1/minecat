@@ -25,7 +25,7 @@ def run(
     *,
     host: str = "0.0.0.0",
     ws_port: int = 6899,
-    manager_port: int = 620,
+    manager_port: int = 6420,
     ssl: SSLContext | None = None,
     ws_logger: LoggerLike | None = ws_default_logger,
     manager_logger: LoggerLike | None = manager_default_logger,

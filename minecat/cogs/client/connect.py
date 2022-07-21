@@ -29,14 +29,16 @@ class Connect(CogBase["Minecat"]):
         bot.loop.create_task(self.connect())
 
     async def connect(self) -> None:
-        async for ws in connect(
+        async for ws in connect(  # type: ignore  # should be correct type
             "ws://manager:6420",
             create_protocol=JsonWebSocketClient,  # type: ignore  # doesnt know how to type
         ):
-            await ws.send(f'{{"o": {Opcode.LOGIN.value}, "d": {self.bot.cluster}}}')
+            ws: JsonWebSocketClient
+            self.bot.mnws = ws
+            await ws.send({"o": Opcode.LOGIN.value, "d": self.bot.cluster})
             try:
                 async for message in ws:
-                    await self.handler(ws, loads(message))
+                    await self.handler(ws, message)
             except ConnectionClosed:
                 continue
 

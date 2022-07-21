@@ -9,6 +9,7 @@ from ssl import SSLContext
 
 from websockets.server import serve
 
+from .protocol import ClusteredWebSocketServer
 from .handler import handle
 
 if TYPE_CHECKING:
@@ -21,4 +22,11 @@ __all__ = ("run_manager",)
 def run_manager(
     *, host: str, port: int, ssl: SSLContext | None, logger: LoggerLike | None
 ) -> Serve:
-    return serve(ws_handler=handle, host=host, port=port, ssl=ssl, logger=logger)
+    return serve(
+        ws_handler=handle,  # type: ignore
+        host=host,
+        port=port,
+        ssl=ssl,
+        logger=logger,
+        create_protocol=ClusteredWebSocketServer,  # type: ignore  # websockets pls fix
+    )

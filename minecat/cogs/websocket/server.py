@@ -19,7 +19,6 @@ if TYPE_CHECKING:
     from minecat.__main__ import Minecat
 
 
-
 class Server(CogBase["Minecat"]):
     def __init__(self, bot: Minecat) -> None:
         super().__init__(bot)
@@ -41,13 +40,13 @@ class Server(CogBase["Minecat"]):
             port=int(f"69{str(self.bot.cluster).rjust(2, '0')}"),
             # the port is `69{cluster}`, rjust is to add leading 0s to the cluster id
         ) as ws:
-            self.bot.mcws = ws
+            self.bot.mcws = ws  # type: ignore  # it will be the correct type
             await self.future
 
     async def handler(self, ws: WebSocketServer) -> None:
         ws.logger.debug("< Received new connection")
         async for message in ws:
-            await self.bot.manager(ws=ws, data=loads(message))
+            await self.bot.manager(ws=ws, data=message)
 
 
 def setup(bot: Minecat):

@@ -13,9 +13,11 @@ from botbase import BotBase
 from dotenv import load_dotenv
 from nextcord import Intents, MemberCacheFlags
 from uvloop import EventLoopPolicy
+from minecat.cogs.websocket import WebSocketServer
+from common import JsonWebSocketClient
 
 if TYPE_CHECKING:
-    from websockets.server import WebSocketServer
+    from nextcord.ext.commands import Context
 
     from .cogs.websocket import Manager
 
@@ -35,10 +37,31 @@ cluster count                 position in cluster "line"
 """
 
 
+log = __import__("logging").getLogger(__name__)
+
+
 class Minecat(BotBase):
     manager: Manager
     mcws: WebSocketServer
+    mnws: JsonWebSocketClient
     cluster: int
+
+    async def close(self):
+        await super().close()
+
+        # I would like type validation and also the next closes to run.
+        # Even if they don't exist or somehow are None?
+        try:
+            log.error("HERE")
+            await self.mcws.close()
+        except (AttributeError, TypeError):
+            pass
+
+        try:
+            log.error("OR HERE")
+            await self.mnws.close()
+        except (AttributeError, TypeError):
+            pass
 
 
 intents = Intents.none()
@@ -53,6 +76,11 @@ bot = Minecat(
     shard_count=shard_total,
 )
 bot.cluster = cluster
+
+
+@bot.check
+async def is_owner(ctx: Context):
+    return await ctx.bot.is_owner(ctx.author)
 
 
 bot.run(getenv("TOKEN"))

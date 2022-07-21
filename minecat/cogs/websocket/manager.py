@@ -18,7 +18,6 @@ if TYPE_CHECKING:
 
 class WebsocketManager(CogBase["Minecat"]):
     @command()
-    @is_owner()
     async def reload_manager(self, ctx: MyContext):
         from .. import websocket
 
