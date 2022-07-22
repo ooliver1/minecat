@@ -8,10 +8,10 @@ from typing import TYPE_CHECKING
 
 from common.protocols import JsonWebSocketServer
 
-from ._opcode import Opcode
+from .opcode import Opcode
 
 if TYPE_CHECKING:
-    from ._errors import ServerError
+    from .errors import ServerError
     from common.types import JsonType
 
 
@@ -30,4 +30,4 @@ class WebSocketServer(JsonWebSocketServer):
         payload["o"] = Opcode.ERROR.value
         payload["d"] = data
 
-        await self.send_json(payload)
+        await self.send(payload)

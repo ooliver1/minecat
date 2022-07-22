@@ -8,9 +8,8 @@ from importlib import reload
 from typing import TYPE_CHECKING
 
 from botbase import CogBase, MyContext
-from nextcord.ext.commands import command, is_owner
-
-from ..websocket import Manager
+from minecat.websocket import Manager
+from nextcord.ext.commands import command
 
 if TYPE_CHECKING:
     from minecat.__main__ import Minecat
@@ -19,10 +18,10 @@ if TYPE_CHECKING:
 class WebsocketManager(CogBase["Minecat"]):
     @command()
     async def reload_manager(self, ctx: MyContext):
-        from .. import websocket
+        from ... import websocket
 
         await ctx.send("Reloading module...")
-        reload(websocket._manager)
+        reload(websocket.manager)
         reload(websocket)
         await ctx.send("Reloaded module.")
 

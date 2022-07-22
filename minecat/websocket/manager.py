@@ -6,12 +6,12 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ._errors import ServerError
-from ._opcode import Opcode
+from .errors import ServerError
+from .opcode import Opcode
 
 if TYPE_CHECKING:
     from minecat.__main__ import Minecat
-    from ._server import WebSocketServer
+    from .server import WebSocketServer
 
     from common.types import JsonType, WebSocketCallback
 
