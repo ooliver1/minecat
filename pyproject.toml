@@ -11,7 +11,7 @@ nextcord = {extras = ["speed"], version = "^2.0.0"}
 aiohttp = "^3.8.1"
 websockets = "^10.3"
 uvloop = "^0.16.0"
-orjson = "^3.7.5"
+orjson = "^3.7.8"
 lru-dict = "^1.1.7"
 python-dotenv = "^0.20.0"
 ooliver-botbase = "^1.20.0"
