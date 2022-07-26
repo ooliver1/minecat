@@ -13,13 +13,13 @@ from botbase import BotBase
 from dotenv import load_dotenv
 from nextcord import Intents, MemberCacheFlags
 from uvloop import EventLoopPolicy
-from minecat.cogs.websocket import WebSocketServer
+from minecat.websocket import WebSocketServer
 from common import JsonWebSocketClient
 
 if TYPE_CHECKING:
     from nextcord.ext.commands import Context
 
-    from .cogs.websocket import Manager
+    from .websocket import Manager
 
 set_event_loop_policy(EventLoopPolicy())
 load_dotenv()
