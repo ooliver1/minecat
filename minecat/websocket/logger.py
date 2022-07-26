@@ -6,6 +6,9 @@ from logging import INFO, Formatter, LoggerAdapter, getLogger
 from logging.handlers import TimedRotatingFileHandler
 
 
+__all__ = ("logger",)
+
+
 class UUIDAdapter(LoggerAdapter):
     def process(self, msg, kwargs):
         try:

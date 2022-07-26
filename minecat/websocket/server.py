@@ -15,6 +15,9 @@ if TYPE_CHECKING:
     from common.types import JsonType
 
 
+__all__ = ("WebSocketServer",)
+
+
 class WebSocketServer(JsonWebSocketServer):
     uuid: str
 

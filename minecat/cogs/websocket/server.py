@@ -7,11 +7,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from botbase import CogBase
-from orjson import loads
+from minecat.websocket import WebSocketServer, logger
 from websockets.server import serve
-
-from ._logger import logger
-from ._server import WebSocketServer
 
 if TYPE_CHECKING:
     from asyncio import Future
