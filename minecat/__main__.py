@@ -52,13 +52,11 @@ class Minecat(BotBase):
         # I would like type validation and also the next closes to run.
         # Even if they don't exist or somehow are None?
         try:
-            log.error("HERE")
             await self.mcws.close()
         except (AttributeError, TypeError):
             pass
 
         try:
-            log.error("OR HERE")
             await self.mnws.close()
         except (AttributeError, TypeError):
             pass
