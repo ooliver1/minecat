@@ -27,15 +27,4 @@ class RestartData(TypedDict):
     d: int
 
 
-class FindData(TypedDict):
-    o: Literal[Opcode.FIND]
-    d: FindInnerData
-
-
-class FindInnerData(TypedDict):
-    nonce: int
-    uuid: str
-    guild: int
-
-
-ManagerJsonType = LoginData | LinkedData | RestartData | FindData
+ManagerJsonType = LoginData | LinkedData | RestartData

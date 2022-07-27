@@ -7,22 +7,20 @@ from __future__ import annotations
 from asyncio import set_event_loop_policy
 from os import environ as env
 from os import getenv
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 from botbase import BotBase
-from dotenv import load_dotenv
+from botbase import MyContext as Context
+from common import JsonWebSocketClient
 from nextcord import Intents, MemberCacheFlags
 from uvloop import EventLoopPolicy
+
 from minecat.websocket import WebSocketServer
-from common import JsonWebSocketClient
 
 if TYPE_CHECKING:
-    from nextcord.ext.commands import Context
-
     from .websocket import Manager
 
 set_event_loop_policy(EventLoopPolicy())
-load_dotenv()
 shard_total = int(env["SHARD_TOTAL"])
 shard_start = int(env["SHARD_START"])
 shard_count = int(env["SHARD_COUNT"])
@@ -46,8 +44,8 @@ class Minecat(BotBase):
     mnws: JsonWebSocketClient
     cluster: int
 
-    async def close(self):
-        await super().close()
+    async def close(self, *args: Any, **kwargs: Any) -> None:
+        await super().close(*args, **kwargs)
 
         # I would like type validation and also the next closes to run.
         # Even if they don't exist or somehow are None?

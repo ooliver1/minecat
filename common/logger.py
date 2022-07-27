@@ -4,15 +4,15 @@
 
 from __future__ import annotations
 
-from logging import getLogger, Formatter, INFO
+from logging import INFO, Formatter, LoggerAdapter, getLogger
 from logging.handlers import TimedRotatingFileHandler
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from logging import Logger
 
 
-__all__ = ("ws_logger_factory",)
+__all__ = ("ws_logger_factory", "UUIDAdapter")
 
 
 def ws_logger_factory(*, logger_name: str, directory: str) -> Logger:
@@ -28,3 +28,15 @@ def ws_logger_factory(*, logger_name: str, directory: str) -> Logger:
     h.namer = lambda name: name.replace(".log", "") + ".log"
     logger.addHandler(h)
     return logger
+
+
+class UUIDAdapter(LoggerAdapter[Logger]):
+    def process(self, msg: str, kwargs: Any):
+        try:
+            websocket = kwargs["extra"]["websocket"]
+        except KeyError:
+            return msg, kwargs
+
+        xff = websocket.request_headers.get("CF-Connecting-IP")
+        uuid = getattr(websocket, "uuid", "unknown".ljust(22))
+        return f"{uuid} {xff}: {msg}", kwargs

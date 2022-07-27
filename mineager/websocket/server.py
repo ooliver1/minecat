@@ -12,7 +12,7 @@ from websockets.server import serve
 from .handler import handle
 
 if TYPE_CHECKING:
-    from websockets.typing import LoggerLike
+    from common import LoggerLike
     from websockets.legacy.server import Serve
 
 __all__ = ("run_ws",)

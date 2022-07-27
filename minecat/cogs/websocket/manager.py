@@ -7,17 +7,19 @@ from __future__ import annotations
 from importlib import reload
 from typing import TYPE_CHECKING
 
-from botbase import CogBase, MyContext
+from botbase import CogBase, MyContext as Context
 from minecat.websocket import Manager
 from nextcord.ext.commands import command
 
 if TYPE_CHECKING:
     from minecat.__main__ import Minecat
 
+    Context = Context[Minecat]
+
 
 class WebsocketManager(CogBase["Minecat"]):
     @command()
-    async def reload_manager(self, ctx: MyContext):
+    async def reload_manager(self, ctx: Context):
         from ... import websocket
 
         await ctx.send("Reloading module...")

@@ -21,22 +21,10 @@ async def handle(ws: ClusteredWebSocketServer) -> None:
 
         if message["o"] == Opcode.LOGIN:
             cluster = message["d"]
-            if not isinstance(cluster, int):
-                ws.logger.error(
-                    "Opcode.LOGIN's data payload must be an int, not %s", type(cluster)
-                )
-                continue
-
             storage[cluster] = ws
             ws.cluster = cluster
         elif message["o"] == Opcode.RESTART:
             cluster = message["d"]
-            if not isinstance(cluster, int):
-                ws.logger.error(
-                    "Opcode.RESTART's data payload must be an int, not %s",
-                    type(cluster),
-                )
-                continue
 
             if cluster == -1:
                 for ws in storage.values():

@@ -14,5 +14,5 @@ if TYPE_CHECKING:
 
 class ClusteredWebSocketServer(JsonWebSocketServer):
     cluster: int
-    recv: Callable[[], Awaitable[ManagerJsonType]]
-    __aiter__: Callable[[], AsyncIterator[ManagerJsonType]]
+    recv: Callable[[], Awaitable[ManagerJsonType]]  # type: ignore [incompatible-override]
+    __aiter__: Callable[[], AsyncIterator[ManagerJsonType]]  # type: ignore [incompatible-override]

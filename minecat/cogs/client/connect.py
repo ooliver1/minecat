@@ -8,7 +8,6 @@ from logging import getLogger
 from typing import TYPE_CHECKING
 
 from botbase import CogBase
-from orjson import loads
 from common import JsonWebSocketClient
 from mineager import Opcode
 from websockets.client import WebSocketClientProtocol, connect
@@ -17,7 +16,7 @@ from websockets.exceptions import ConnectionClosed
 if TYPE_CHECKING:
     from minecat.__main__ import Minecat
 
-    from ..websocket import JsonType
+    from common import JsonType
 
 log = getLogger(__name__)
 

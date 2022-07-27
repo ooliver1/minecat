@@ -4,16 +4,17 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Coroutine
 
 from orjson import dumps, loads
+from websockets.client import WebSocketClientProtocol
 from websockets.exceptions import ConnectionClosedOK
 from websockets.server import WebSocketServerProtocol
-from websockets.client import WebSocketClientProtocol
-from websockets.legacy.protocol import WebSocketCommonProtocol
 
 if TYPE_CHECKING:
-    from typing import Awaitable, AsyncIterator
+    from logging import Logger
+    from typing import AsyncIterator
+
     from .types import JsonType
 
 
@@ -22,13 +23,15 @@ __all__ = ("JsonWebSocketServer", "JsonWebSocketClient")
 
 # The mro hates me no matter what I do :(
 class JsonWebSocketServer(WebSocketServerProtocol):
-    def send(self, json: JsonType) -> Awaitable[None]:
-        return super().send(dumps(json).decode())
+    logger: Logger
 
-    async def recv(self) -> JsonType:
+    def send(self, message: JsonType) -> Coroutine[Any, Any, None]:  # type: ignore
+        return super().send(dumps(message).decode())
+
+    async def recv(self) -> JsonType:  # type: ignore  # would like to override
         return loads(await super().recv())
 
-    async def __aiter__(self) -> AsyncIterator[JsonType]:
+    async def __aiter__(self) -> AsyncIterator[JsonType]:  # type: ignore
         try:
             while True:
                 yield loads(await super().recv())
@@ -41,13 +44,13 @@ WebSocketServerProtocol.__aiter__ = JsonWebSocketServer.__aiter__  # type: ignor
 
 
 class JsonWebSocketClient(WebSocketClientProtocol):
-    def send(self, json: JsonType) -> Awaitable[None]:
-        return super().send(dumps(json).decode())
+    def send(self, message: JsonType) -> Coroutine[Any, Any, None]:  # type: ignore [imcompatible-override]
+        return super().send(dumps(message).decode())
 
-    async def recv(self) -> JsonType:
+    async def recv(self) -> JsonType:  # type: ignore [imcompatible-override]
         return loads(await super().recv())
 
-    async def __aiter__(self) -> AsyncIterator[JsonType]:
+    async def __aiter__(self) -> AsyncIterator[JsonType]:  # type: ignore [imcompatible-override]
         try:
             while True:
                 yield await self.recv()

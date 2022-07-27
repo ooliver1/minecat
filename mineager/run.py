@@ -14,7 +14,7 @@ from .manager import default_logger as manager_default_logger
 if TYPE_CHECKING:
     from ssl import SSLContext
 
-    from websockets.typing import LoggerLike
+    from common import LoggerLike
     from websockets.legacy.server import Serve
 
 

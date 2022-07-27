@@ -4,17 +4,20 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
 from ssl import SSLContext
+from typing import TYPE_CHECKING
 
 from websockets.server import serve
 
-from .protocol import ClusteredWebSocketServer
 from .handler import handle
+from .protocol import ClusteredWebSocketServer
 
 if TYPE_CHECKING:
-    from websockets.typing import LoggerLike
+    from logging import Logger, LoggerAdapter
+
     from websockets.legacy.server import Serve
+
+    LoggerLike = Logger | LoggerAdapter[Logger]
 
 __all__ = ("run_manager",)
 
