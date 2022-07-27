@@ -11,6 +11,8 @@ from typing import TYPE_CHECKING, Any
 if TYPE_CHECKING:
     from logging import Logger
 
+    LoggerAdapter = LoggerAdapter[Logger]
+
 
 __all__ = ("ws_logger_factory", "UUIDAdapter")
 
@@ -30,7 +32,7 @@ def ws_logger_factory(*, logger_name: str, directory: str) -> Logger:
     return logger
 
 
-class UUIDAdapter(LoggerAdapter[Logger]):
+class UUIDAdapter(LoggerAdapter):
     def process(self, msg: str, kwargs: Any):
         try:
             websocket = kwargs["extra"]["websocket"]
