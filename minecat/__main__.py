@@ -20,6 +20,7 @@ from minecat.websocket import WebSocketServer
 if TYPE_CHECKING:
     from .websocket import Manager
 
+
 set_event_loop_policy(EventLoopPolicy())
 shard_total = int(env["SHARD_TOTAL"])
 shard_start = int(env["SHARD_START"])
@@ -75,7 +76,7 @@ bot.cluster = cluster
 
 
 @bot.check
-async def is_owner(ctx: Context):
+async def is_owner(ctx: Context[Minecat]):
     return await ctx.bot.is_owner(ctx.author)
 
 
