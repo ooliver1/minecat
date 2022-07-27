@@ -15,9 +15,11 @@ if TYPE_CHECKING:
 
 async def handle(ws: ClusteredWebSocketServer) -> None:
     async for message in ws:
-        opcode = Opcode(message["o"])
+        message["o"] = Opcode(message["o"])  # type: ignore
+        # Assign the actual Opcode without messing about with the protocol.
+        # Gets some fancy Union table types \o/
 
-        if opcode == Opcode.LOGIN:
+        if message["o"] == Opcode.LOGIN:
             cluster = message["d"]
             if not isinstance(cluster, int):
                 ws.logger.error(
@@ -27,7 +29,7 @@ async def handle(ws: ClusteredWebSocketServer) -> None:
 
             storage[cluster] = ws
             ws.cluster = cluster
-        elif opcode == Opcode.RESTART:
+        elif message["o"] == Opcode.RESTART:
             cluster = message["d"]
             if not isinstance(cluster, int):
                 ws.logger.error(
