@@ -50,7 +50,6 @@ python-versions = "*"
 
 [package.dependencies]
 six = ">=1.6.1,<2.0"
-wheel = ">=0.23.0,<1.0"
 
 [[package]]
 name = "async-timeout"
@@ -82,9 +81,9 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [package.extras]
-dev = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "zope-interface", "furo", "sphinx", "sphinx-notfound-page", "pre-commit", "cloudpickle"]
-docs = ["furo", "sphinx", "zope-interface", "sphinx-notfound-page"]
-tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "zope-interface", "cloudpickle"]
+dev = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "zope.interface", "furo", "sphinx", "sphinx-notfound-page", "pre-commit", "cloudpickle"]
+docs = ["furo", "sphinx", "zope.interface", "sphinx-notfound-page"]
+tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "zope.interface", "cloudpickle"]
 tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "cloudpickle"]
 
 [[package]]
@@ -309,7 +308,7 @@ docs = ["sphinx", "sphinxcontrib-trio", "sphinx-rtd-theme"]
 
 [[package]]
 name = "nextcord-ext-menus"
-version = "1.5.4"
+version = "1.5.5"
 description = "An extension module to make reaction and button component menus with nextcord"
 category = "main"
 optional = false
@@ -440,17 +439,6 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
-name = "wheel"
-version = "0.37.1"
-description = "A built-package format for Python"
-category = "main"
-optional = false
-python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
-
-[package.extras]
-test = ["pytest (>=3.0.0)", "pytest-cov"]
-
-[[package]]
 name = "yarl"
 version = "1.7.2"
 description = "Yet another URL library"
@@ -465,7 +453,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "61e262c8494558a44bbba9e7c17d86a4cd370d74e95a26b1dccc8e340e210588"
+content-hash = "59637e7d8c210879713eb7cb086984040ea6602d46f6a36663e8b13166735d1e"
 
 [metadata.files]
 aiodns = [
@@ -999,8 +987,8 @@ nextcord-ext-ipc = [
     {file = "nextcord_ext_ipc-2.2.1-py3-none-any.whl", hash = "sha256:6297176a0a008f2bbba658d3769f61eea8e9c5df48cf0c7f9432676b797cf6b6"},
 ]
 nextcord-ext-menus = [
-    {file = "nextcord-ext-menus-1.5.4.tar.gz", hash = "sha256:979091c0d20d255d11268f3b37ec6cb096f8b64d8a9b54dcb502a1390c93e9c5"},
-    {file = "nextcord_ext_menus-1.5.4-py3-none-any.whl", hash = "sha256:7aef1d3b090a41cb2fbbabd60a24f8ea5a02c19d45614174ea58cd1e1b774f89"},
+    {file = "nextcord-ext-menus-1.5.5.tar.gz", hash = "sha256:7913de1bf4d90b37ed92ce1ea579caa705b7111f19bab41017fe030793197b60"},
+    {file = "nextcord_ext_menus-1.5.5-py3-none-any.whl", hash = "sha256:8051456ca402eead37e61c44ef57073ada338026ddf0a92617b3bf1efa648600"},
 ]
 ooliver-botbase = [
     {file = "ooliver-botbase-1.20.1.tar.gz", hash = "sha256:26dbad8225918f965404a5b116475aced7af49244b587f67bd061e8e5eebe477"},
@@ -1204,10 +1192,6 @@ websockets = [
     {file = "websockets-10.3-pp37-pypy37_pp73-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:7934e055fd5cd9dee60f11d16c8d79c4567315824bacb1246d0208a47eca9755"},
     {file = "websockets-10.3-pp37-pypy37_pp73-win_amd64.whl", hash = "sha256:3eda1cb7e9da1b22588cefff09f0951771d6ee9fa8dbe66f5ae04cc5f26b2b55"},
     {file = "websockets-10.3.tar.gz", hash = "sha256:fc06cc8073c8e87072138ba1e431300e2d408f054b27047d047b549455066ff4"},
-]
-wheel = [
-    {file = "wheel-0.37.1-py2.py3-none-any.whl", hash = "sha256:4bdcd7d840138086126cd09254dc6195fb4fc6f01c050a1d7236f2630db1d22a"},
-    {file = "wheel-0.37.1.tar.gz", hash = "sha256:e9a504e793efbca1b8e0e9cb979a249cf4a0a7b5b8c9e8b65a5e39d49529c1c4"},
 ]
 yarl = [
     {file = "yarl-1.7.2-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:f2a8508f7350512434e41065684076f640ecce176d262a7d54f0da41d99c5a95"},
