@@ -10,6 +10,7 @@ from ssl import SSLContext
 from websockets.server import serve
 
 from .handler import handle
+from .protocol import UUIDWebSocketServer
 
 if TYPE_CHECKING:
     from common import LoggerLike
@@ -21,4 +22,11 @@ __all__ = ("run_ws",)
 def run_ws(
     *, host: str, port: int, ssl: SSLContext | None, logger: LoggerLike | None
 ) -> Serve:
-    return serve(ws_handler=handle, host=host, port=port, ssl=ssl, logger=logger)
+    return serve(
+        ws_handler=handle,  # type: ignore
+        host=host,
+        port=port,
+        ssl=ssl,
+        logger=logger,
+        create_protocol=UUIDWebSocketServer,  # type: ignore  # websockets pls fix
+    )

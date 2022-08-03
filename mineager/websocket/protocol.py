@@ -2,9 +2,12 @@
 # you may not use this file except in compliance with, the Elastic License 2.0
 # https://www.elastic.co/licensing/elastic-license
 
-from .protocol import UUIDWebSocketServer
+from __future__ import annotations
+
+from common import JsonWebSocketServer
+
+__all__ = ("UUIDWebSocketServer",)
 
 
-async def handle(ws: UUIDWebSocketServer):
-    async for message in ws:
-        print(message)
+class UUIDWebSocketServer(JsonWebSocketServer):
+    uuid: str
