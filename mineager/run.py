@@ -6,10 +6,10 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from .websocket import run_ws
-from .websocket import default_logger as ws_default_logger
-from .manager import run_manager
 from .manager import default_logger as manager_default_logger
+from .manager import run_manager
+from .websocket import default_logger as ws_default_logger
+from .websocket import run_ws
 
 if TYPE_CHECKING:
     from ssl import SSLContext
