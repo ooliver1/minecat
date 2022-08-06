@@ -275,11 +275,12 @@ python-versions = "*"
 
 [[package]]
 name = "nextcord"
-version = "2.0.0"
+version = "2.1.0a4071+g0c7f0eba"
 description = "A Python wrapper for the Discord API forked from discord.py"
 category = "main"
 optional = false
 python-versions = ">=3.8.0"
+develop = false
 
 [package.dependencies]
 aiodns = {version = ">=1.1", optional = true, markers = "extra == \"speed\""}
@@ -292,6 +293,12 @@ orjson = {version = ">=3.5.4", optional = true, markers = "extra == \"speed\""}
 docs = ["sphinx (==4.0.2)", "sphinxcontrib_trio (==1.1.2)", "sphinxcontrib-websupport"]
 speed = ["orjson (>=3.5.4)", "aiodns (>=1.1)", "brotli", "cchardet"]
 voice = ["PyNaCl (>=1.3.0,<1.5)"]
+
+[package.source]
+type = "git"
+url = "https://github.com/nextcord/nextcord"
+reference = "master"
+resolved_reference = "0c7f0ebaaf06d9ec14f2669c05a458be058aa54a"
 
 [[package]]
 name = "nextcord-ext-ipc"
@@ -465,7 +472,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "61e262c8494558a44bbba9e7c17d86a4cd370d74e95a26b1dccc8e340e210588"
+content-hash = "db4533bdbe436e30a51d0553827539a469b25497715a89ba62185cb251ab9fa7"
 
 [metadata.files]
 aiodns = [
@@ -991,9 +998,7 @@ mypy-extensions = [
     {file = "mypy_extensions-0.4.3-py2.py3-none-any.whl", hash = "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d"},
     {file = "mypy_extensions-0.4.3.tar.gz", hash = "sha256:2d82818f5bb3e369420cb3c4060a7970edba416647068eb4c5343488a6c604a8"},
 ]
-nextcord = [
-    {file = "nextcord-2.0.0.tar.gz", hash = "sha256:863f569239182126777b86731b39d3f7697fe9ca6c3458ec7011fdfd0ebef590"},
-]
+nextcord = []
 nextcord-ext-ipc = [
     {file = "nextcord-ext-ipc-2.2.1.tar.gz", hash = "sha256:45ca974f96359b88deb1a84e7f346eaccb4fd0e9741139cc8baf2205c6bb7432"},
     {file = "nextcord_ext_ipc-2.2.1-py3-none-any.whl", hash = "sha256:6297176a0a008f2bbba658d3769f61eea8e9c5df48cf0c7f9432676b797cf6b6"},
