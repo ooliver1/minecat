@@ -8,15 +8,14 @@ from logging import getLogger
 from typing import TYPE_CHECKING
 
 from botbase import CogBase
-from common import JsonWebSocketClient
 from mineager import Opcode
-from websockets.client import WebSocketClientProtocol, connect
+from minecat.client import MinecatWebSocketClient
+from websockets.client import connect
 from websockets.exceptions import ConnectionClosed
 
 if TYPE_CHECKING:
-    from minecat.__main__ import Minecat
-
     from common import JsonType
+    from minecat.__main__ import Minecat
 
 log = getLogger(__name__)
 
@@ -30,18 +29,18 @@ class Connect(CogBase["Minecat"]):
     async def connect(self) -> None:
         async for ws in connect(  # type: ignore  # should be correct type
             "ws://manager:6420",
-            create_protocol=JsonWebSocketClient,  # type: ignore  # doesnt know how to type
+            create_protocol=MinecatWebSocketClient,  # type: ignore  # doesnt know how to type
         ):
-            ws: JsonWebSocketClient
+            ws: MinecatWebSocketClient
             self.bot.mnws = ws
-            await ws.send({"o": Opcode.LOGIN.value, "d": self.bot.cluster})
+            await ws.login(self.bot.cluster)
             try:
                 async for message in ws:
                     await self.handler(ws, message)
             except ConnectionClosed:
                 continue
 
-    async def handler(self, ws: WebSocketClientProtocol, message: JsonType) -> None:
+    async def handler(self, ws: MinecatWebSocketClient, message: JsonType) -> None:
         log.debug("Received message from manager: %s", message)
         opcode = Opcode(message["o"])
 
