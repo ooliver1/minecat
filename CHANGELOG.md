@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.4.0](https://github.com/ooliver1/minecat/compare/v0.3.0...v0.4.0) (2022-08-15)
+
+
+### Features
+
+* add link server cog ([f8743c1](https://github.com/ooliver1/minecat/commit/f8743c1564db9863bcc3f273c63242a729047924))
+* **mineager:** add custom server protocol ([c6fa507](https://github.com/ooliver1/minecat/commit/c6fa50796024726dd12d00bd62c017f6a459d119))
+* **ws:** add controller and storage to manage clients ([ce107bb](https://github.com/ooliver1/minecat/commit/ce107bb9b5b62caa9abc96ded0e44ca4010cbde6))
+
+
+### Bug Fixes
+
+* add -py.typed files ([61ab7b8](https://github.com/ooliver1/minecat/commit/61ab7b8b5a4e95fc510410e0ac9f1629bd79c1ee))
+* eliminate pyright errors ([aa9e635](https://github.com/ooliver1/minecat/commit/aa9e635232509e619a8f7f7ed8800b2a576cbee8))
+* import from correct module ([d20e7b8](https://github.com/ooliver1/minecat/commit/d20e7b808cf7c8fe559cc14c29a67cc8bb25681e))
+* **main:** remove more pyright issues ([e30acdf](https://github.com/ooliver1/minecat/commit/e30acdf2c3baa85b5de20799df072c728b28a543))
+* pyright thinks we are in 3.11 ([5bba00e](https://github.com/ooliver1/minecat/commit/5bba00e545bdc0dfed36360c2b74fa1c0ffe1b4b))
+* **ws:** import logger properly ([23fdb40](https://github.com/ooliver1/minecat/commit/23fdb40bfe118e60273e7189315595c3a9d2d9d0))
+
 ## [0.3.0](https://github.com/ooliver1/minecat/compare/v0.2.0...v0.3.0) (2022-07-21)
 
 
