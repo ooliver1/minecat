@@ -6,14 +6,14 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from botbase import CogBase, MyContext as Context
+from botbase import CogBase, MyContext
 from nextcord.ext.commands import command
 from mineager import Opcode
 
 if TYPE_CHECKING:
     from minecat.__main__ import Minecat
 
-    Context = Context[Minecat]
+    Context = MyContext[Minecat]
 
 
 class Restart(CogBase["Minecat"]):
