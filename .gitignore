@@ -1,7 +1,0 @@
-__pycache__/
-*.env
-*.pyc
-*.out
-*.sh
-!start.sh
-pg_data
