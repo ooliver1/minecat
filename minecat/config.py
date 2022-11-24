@@ -6,5 +6,5 @@ from os import getenv
 
 db_url = getenv("DB_URI")
 name = "minecat"
-version = "0.1.0"  # x-release-please-version
+version = "0.4.0"  # x-release-please-version
 logchannel = 921139782648725515
