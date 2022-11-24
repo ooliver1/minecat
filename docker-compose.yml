@@ -1,0 +1,53 @@
+version: "3"
+
+x-restart-policy:
+  &restart_policy
+  restart: unless-stopped
+
+services:
+  bot:
+    <<: *restart_policy
+    env_file: .env
+    deploy:
+      replicas: ${TOTAL_CLUSTERS}
+    depends_on:
+      - postgres
+      - keydb
+      - manager
+    links:
+      - postgres
+      - keydb
+    build:
+      context: .
+      dockerfile: minecat/Dockerfile
+    volumes:
+      - ./logs:/bot/logs
+      - ./minecat:/bot/minecat
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DB_URI=postgresql://postgres:postgres@postgres:5432/bot
+      - CURRENT_CLUSTER={{ index .Config.Labels "com.docker.compose.container-number"}}
+  postgres:
+    <<: *restart_policy
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: bot
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+  keydb:
+    <<: *restart_policy
+    image: eqalpha/keydb
+  manager:
+    <<: *restart_policy
+    build:
+      context: .
+      dockerfile: manager/Dockerfile
+    volumes:
+      - ./logs:/manager/logs
+    depends_on:
+      - keydb
+    links:
+      - keydb
