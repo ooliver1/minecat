@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from asyncio import Event, gather, new_event_loop, run, set_event_loop
+from asyncio import Event, gather, new_event_loop, set_event_loop
 from typing import TYPE_CHECKING
 
 from .client import Manager
@@ -19,13 +19,12 @@ async def main(*, manager: Manager, event: Event) -> tuple[None, Literal[True]]:
 
 if __name__ == "__main__":
     event = Event()
-    manager = Manager(event=event)
-
     loop = new_event_loop()
     set_event_loop(loop)
+    manager = Manager(event=event, loop=loop)
 
     try:
-        run(main(manager=manager, event=event))
+        loop.run_until_complete(main(manager=manager, event=event))
     except KeyboardInterrupt:
         pass
     finally:

@@ -20,6 +20,8 @@ services:
     build:
       context: .
       dockerfile: minecat/Dockerfile
+    ports:
+      - 127.0.0.1:${PORTS}:6969
     volumes:
       - ./logs:/bot/logs
       - ./minecat:/bot/minecat
