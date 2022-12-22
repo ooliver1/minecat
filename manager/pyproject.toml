@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "manager"
-version = "0.1.0"
+name = "minecat-manager"
+version = "0.0.0"
 description = ""
 authors = ["ooliver1 <oliverwilkes2006@icloud.com>"]
 license = "ELv2"
@@ -9,6 +9,9 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.10"
 redis = "^4.3.4"
+shortuuid = "^1.0.11"
+websockets = "^10.4"
+orjson = "^3.8.3"
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.10.0"

@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "minecat"
-version = "0.1.0"
+name = "minecat-bot"
+version = "0.0.0"
 description = "A Discord bot to connect with Minecraft!"
 authors = ["ooliver1 <oliverwilkes2006@icloud.com>"]
 license = "ELv2"
@@ -12,11 +12,13 @@ nextcord = {extras = ["speed"], version = "^2.2.0"}
 ooliver-botbase = "^1.22.3"
 docker-py = "^1.10.6"
 redis = "^4.3.4"
+websockets = "^10.4"
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.10.0"
 isort = "^5.10.1"
 flake8 = "^5.0.4"
+flake8-pyproject = "^1.2.2"
 
 [build-system]
 requires = ["poetry-core"]
