@@ -3,11 +3,13 @@
 # https://www.elastic.co/licensing/elastic-license
 
 
+from asyncio import gather
 from logging import getLogger
 from os import getenv
 
 from .bot import Minecat
 from .utils import CURRENT_CLUSTER, INTENTS, MEMBER_CACHE_FLAGS, SHARD_IDS, TOTAL_SHARDS
+from .websocket import run as run_ws
 
 log = getLogger(__name__)
 
@@ -21,4 +23,9 @@ bot = Minecat(
 )
 
 
-bot.run(getenv("TOKEN"))
+async def main():
+    await gather(bot.start(getenv("TOKEN")), run_ws())
+
+
+# ":(( future from other loop :((" - asyncio 2022
+bot.loop.run_until_complete(main())

@@ -7,16 +7,12 @@ x-restart-policy:
 services:
   bot:
     <<: *restart_policy
-    env_file: .env
     deploy:
       replicas: ${TOTAL_CLUSTERS}
     depends_on:
       - postgres
       - keydb
       - manager
-    links:
-      - postgres
-      - keydb
     build:
       context: .
       dockerfile: minecat/Dockerfile
@@ -27,8 +23,10 @@ services:
       - ./minecat:/bot/minecat
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - DB_URI=postgresql://postgres:postgres@postgres:5432/bot
-      - CURRENT_CLUSTER={{ index .Config.Labels "com.docker.compose.container-number"}}
+      DB_URI: ${DB_URI:-postgresql://postgres:postgres@postgres:5432/bot}
+      TOKEN: $TOKEN
+      TOTAL_CLUSTERS: ${TOTAL_CLUSTERS:-1}
+      TOTAL_SHARDS: ${TOTAL_SHARDS:-1}
   postgres:
     <<: *restart_policy
     image: postgres
@@ -51,5 +49,5 @@ services:
       - ./logs:/manager/logs
     depends_on:
       - keydb
-    links:
-      - keydb
+    ports:
+      - 127.0.0.1:6899:6899
